@@ -1,0 +1,41 @@
+{% extends 'todo/skel_two.html' %}
+{% block content %}
+{% csrf_token %}
+
+<div class="container">
+  <h1>INSPECT TODO</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Title</label>
+      <input type="text" class="form-control" id='name' name='name' value = "{{ todo.name }}" required>
+    </div>
+    <div class="form-group">
+          <label for="description">Description</label>
+          <textarea name="description" class="form-control" id="description" >{{todo.description}}</textarea>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" aria-label="Checkbox for following text input" name = 'important' id= 'important' {% if todo.important %}checked{% endif %}>
+        <label for="important">Urgent</label>
+    </div>
+    <div class="form-group">
+      Created on {{todo.datecreated}}
+    </div>
+    <button type="submit" class="btn btn-info">Submit Changes</button>
+  </form>
+  <br>
+  <form method="POST" action ="{% url 'deletetodo' todo.id %}">
+    {%csrf_token%}
+    <button type="submit" class="btn btn-danger" >Delete Todo</button>
+  </form>
+  <br>
+  <form method="POST" action = "{% url 'completetodo' todo.id %}" >
+    {%csrf_token%}
+    <button type="submit" class="btn btn-success">Complete Todo</button>
+  </form>
+</div>
+
+
+</style>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'home/skel.html' %}
+{% block content %}
+
+
+<div class="container">
+  <h1>Looks like you're not signed into an account</h1>
+  <h2>Log in to view your current todo status!</h2>
+
+  <a href="{% url 'loginuser' %}">
+    <button type="button" class="btn btn-primary btn-lg btn-block">Log In</button>
+  </a>
+  <small class="form-text text-muted ">Or if you dont have an account: </small>
+  <a href="{% url 'signupuser' %}">
+    <button type="button" class="btn btn-secondary btn-lg btn-block">Sign Up</button>
+  </a>
+</div>
+
+<style media="screen">
+  .container {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+</style>
+{% endblock %}
